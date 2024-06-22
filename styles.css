@@ -1,0 +1,123 @@
+/* https://coolors.co/fa8334-a20021-a0af84-040404-d7d9ce */
+
+/* Default settins */
+.default-mode {
+  --bodyBackground: #D7D9CE;
+  --headerBackground: #A20021;
+  --textFontColour: #151515;
+  --headerHeight: 100px;
+  --headerColour: #D7D9CE;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bodyBackground);
+  width: 120vw;
+}
+
+#webpage-header {
+  background-color: var(--headerBackground);
+  height: var(--headerHeight);
+  display: flex;
+  flex-direction: row;
+  color: var(--headerColour);
+}
+
+#webpage-header img {
+  margin: 10px;
+}
+
+#webpage-header h1 {
+  position: absolute;
+  top: 1vh;
+  left: 100px;
+}
+
+#tasks-empty p {
+  margin-left: 36vw;
+  margin-right: 36vw;
+  margin-top: 20px;
+}
+
+.center {
+  margin-left: 45vw;
+  margin-right: 45vw;
+  margin-top: 20vh;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.alternate-heading {
+  display: none;
+  visibility: hidden;
+}
+
+/* Credits for plus button icon: https://codepen.io/LukeRFP/pen/XMbeRL by Luc Millet */
+.button_plus {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  background: #D7D9CE;
+  cursor: pointer;
+  border: 2px solid #A20021;
+  border-radius: 50%;
+  top: 75vh;
+  left: 80vw;
+}
+
+.button_plus:after {
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  height: 4px;
+  width: 50%;
+  background: #A20021;
+  top: 50%;
+  left: 50%;
+}
+
+.button_plus:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #A20021;
+  height: 50%;
+  width: 4px;
+}
+
+.button_plus:hover:before,
+.button_plus:hover:after {
+  background: #D7D9CE;
+  transition: 0.2s;
+}
+
+.button_plus:hover {
+  background-color: #A20021;
+  transition: 0.2s;
+}
+
+/* Responsive Media */
+@media screen and (max-width: 870px) {
+  .default-heading {
+    display: none;
+    visibility: hidden;
+  }
+
+  .alternate-heading {
+    display: block;
+    visibility: visible;
+  }
+}
