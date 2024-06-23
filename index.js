@@ -174,9 +174,11 @@ const displayTask = (task, i) => {
   const deleteButtons = Array.from(document.querySelectorAll("#delete-btn"));
   const deleteButton = deleteButtons[i];
   deleteButton.addEventListener("click", () => {
+
     taskList.splice(i, 1);
     displayAssignedTasks(taskList);
-  })
+    
+  });
 
 }
 
