@@ -9,6 +9,7 @@
   --headerColour: #D7D9CE;
   --formBackground: var(--headerBackground);
   --formFontColour: #D7D9CE;
+  --overlayBackground: #151515;
 }
 
 html {
@@ -183,7 +184,7 @@ body {
   top: 5vw; left: 35vw;
   z-index: 110;
   height: auto;
-  /*transform: scale(0); /* Scale down the pop-up form */
+  transform: scale(0); /* Scale down the pop-up form */
 }
 
 .form-group {
@@ -229,6 +230,23 @@ body {
   transition: transform 0.5s;
 }
 
+/**************** Overlay *****************/
+.overlay {
+  display: none; /* Hide the overlay */
+  opacity: 0.5;
+  background: var(--overlayBackground);
+  position: fixed;
+  top: 0; left: 0; /* Add overlay to the entire html  */
+  width: 100vw; height: 100vh; /* Add overlay to the entire html  */
+  z-index: 100;
+  cursor: pointer;
+  transition: opacity 2s ease;
+}
+
+
+.overlay.show {
+  display: block; /* Show the overlay */
+}
 
 /* Responsive Media */
 @media screen and (max-width: 870px) {
