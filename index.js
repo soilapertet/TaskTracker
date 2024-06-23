@@ -1,4 +1,7 @@
-// Define Task class
+// Initialisation
+let taskList = [];  // initialise an empty array
+
+// Task class
 class Task {
 
   // initialise the constructor method of the Task object
@@ -27,13 +30,7 @@ class Task {
   }
 }
 
-// Initialisation
-let taskList = [];  // initialise an empty array
-let popupForm = document.querySelector("#popup-form");
-let overlay = document.querySelector(".overlay");
-
-
-// Define functions
+// Functions
 // Display popup form when plus button is clicked
 const displayPopupForm = () => {
   popupForm.classList.add("show");
@@ -47,6 +44,33 @@ const closePopupForm = () => {
   popupForm.classList.add("hide");
   overlay.classList.remove("show");
 }
+
+// Return the selected task priority
+const getSelectedPriority = (arr) => {
+  for(i = 0; i < arr.length(); i++) {
+      if(arr[i].checked) {
+        return arr[i].value;
+      }
+  }
+}
+
+// Create a new task
+const createNewTask = () => {
+  let supervisorName = document.querySelector("#supervisor");
+  let clubMemberName = document.querySelector("#club-member");
+  let priorityChoices = Array.from(document.querySelectorAll(".priority input"));
+  let selectedPriority = getSelectedPriority(priorityChoices);
+  let assignedTask = document.querySelector("#task-description");
+  let taskStatus = "Not Started";
+  
+  const task = new Task(supervisorName, clubMemberName, selectedPriority, assignedTask, taskStatus);
+  taskList.push(task);
+  return taskList;
+}
+
+// Initialisation
+let popupForm = document.querySelector("#popup-form");
+let overlay = document.querySelector(".overlay");
 
 // Functionality to open pop-up form
 let plusBtn = document.querySelector(".button_plus");
