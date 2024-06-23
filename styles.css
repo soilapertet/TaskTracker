@@ -84,8 +84,8 @@ body {
   cursor: pointer;
   border: 2px solid #A20021;
   border-radius: 50%;
-  top: 75vh;
-  left: 80vw;
+  top: 80vh;
+  left: 90vw;
 }
 
 .button_plus:after {
@@ -242,7 +242,7 @@ body {
 .task {
   position: relative;
   left: 7vw;
-  width: 85vw;
+  width: 76vw;
   margin: 20px;
   border-radius: 10px;
   background-color: #FFFCF9;

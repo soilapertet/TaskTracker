@@ -8,6 +8,7 @@ let tasksSection = document.querySelector("#tasks");
 let plusBtn = document.querySelector(".button_plus");
 let closeBtn = document.querySelector(".btn-close");
 let inputForm = document.querySelector(".input-form");
+let statusDropDownMenus, currentStatusMenu;
 
 // Task class
 class Task {
@@ -40,10 +41,10 @@ class Task {
   getTaskStatus() { return this.taskStatus};
 
   // initialise the setter methods
-  // method to set the status of the current task
   setTaskStatus(status) {
     this.taskStatus = status;
   }
+
 }
 
 // Functions
@@ -93,7 +94,7 @@ const createNewTask = () => {
 }
 
 // Display tasks in library
-const displayTask = (task) => {
+const displayTask = (task, i) => {
 
   // Create task section
   let taskChildNode = document.createElement("section");
@@ -120,8 +121,7 @@ const displayTask = (task) => {
         <p class="current-priority">${task.getTaskPriority()}</p>
       </div>
       <div class="col" >
-        <select class="form-select">
-          <option>Status</option>
+        <select class="form-select red">
           <option selected value="1">Not Started Yet</option>
           <option value="2">In Progress</option>
           <option value="3">Completed</option>
@@ -140,6 +140,25 @@ const displayTask = (task) => {
   // Append task child note to parent node
   let taskParentNode = document.querySelector("#tasks");
   taskParentNode.appendChild(taskChildNode);
+
+  // Add event listener to drop-down menu
+  const selectedElements = Array.from(document.querySelectorAll(".form-select"));
+  const currentSelectedElement = selectedElements[i];
+  const status = currentSelectedElement.value;
+  currentSelectedElement.addEventListener("change", (event) => {
+    
+    if(event.target.value == '1') {
+      task.setTaskStatus("Not Started Yet");
+    } else if(event.target.value == '2') {
+      task.setTaskStatus("In Progress");
+    } else if(event.target.value == '3') {
+      task.setTaskStatus("Completed");
+    }
+
+    updateStatusColour(task, currentSelectedElement);
+
+  });
+
 }
 
 // Update priority colour
@@ -159,17 +178,28 @@ const updatePriorityColour = (task, i) => {
 }
 
 // Update status colour
-const updateStatusColour = (task, i) => {
+const updateStatusColour = (task, selectMenu) => {
 
-  let statusDropDownMenus = Array.from(document.querySelectorAll(".form-select"));
-  let currentStatusMenu = statusDropDownMenus[i];
+  // reset status colour to default
+  if(selectMenu.classList.contains("red")) {
+    selectMenu.classList.remove("red");
+  }
 
-  if(task.getTaskStatus() == "Not Started Yet") {
-    currentStatusMenu.classList.add("red");
-  } else if(task.getTaskStatus() == "In Progress") {
-    currentStatusMenu.classList.add("yellow");
-  } else if(task.getTaskStatus() == "Completed") {
-    currentStatusMenu.classList.add("green");
+  if(selectMenu.classList.contains("yellow")) {
+    selectMenu.classList.remove("yellow");
+  }
+
+  if(selectMenu.classList.contains("green")) {
+    selectMenu.classList.remove("green");
+  }
+
+  // update status colour after reset
+  if (task.getTaskStatus() == "Not Started Yet") {
+    selectMenu.classList.add("red");
+  } else if (task.getTaskStatus() == "In Progress") {
+    selectMenu.classList.add("yellow");
+  } else if (task.getTaskStatus() == "Completed") {
+    selectMenu.classList.add("green");
   }
 
 }
@@ -187,10 +217,12 @@ const displayAssignedTasks = (tasks) => {
 
   // display tasks that are currently in tasks array
   for(i = 0; i < tasks.length; i++) {
-    displayTask(tasks[i]);
+    displayTask(tasks[i], i);
     updatePriorityColour(tasks[i], i);
-    updateStatusColour(tasks[i], i);
+    // updateStatusColour(tasks[i], i);
   }
+
+
 }
 
 // Functionality to open pop-up form
