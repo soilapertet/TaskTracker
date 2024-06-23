@@ -116,9 +116,9 @@ const displayTask = (task, i) => {
     <div class="row row-cols-5">
       <div class="col title">Deadline</div>
       <div class="col title">Priority</div>
-      <div class="col title">Status</div>
       <div class="col title">Assigned by</div>
       <div class="col title">Assigned to</div>
+      <div class="col title">Status</div>
     </div>
     <div class="row row-cols-5">
       <div class="col deadline">
@@ -130,20 +130,17 @@ const displayTask = (task, i) => {
       <div class="col task-priority">
         <p class="current-priority">${task.getTaskPriority()}</p>
       </div>
-      <div class="col" >
-        <select class="form-select">
-          <option selected value="0">Select Status</option>
-          <option value="1">Not Started Yet</option>
-          <option value="2">In Progress</option>
-          <option value="3">Completed</option>
-        </select>
-      </div>
       <div class="col">
         <p class="supervisor">${task.getTaskSupervisor()}</p>
       </div>
       <div class="col">
         <p class="member">${task.getClubMember()}</p>
       </div>
+      <select class="form-select">
+        <option value="1" selected>Not Started Yet</option>
+        <option value="2">In Progress</option>
+        <option value="3">Completed</option>
+      </select>
     </div>
   `;
   taskChildNode.innerHTML = taskContent;
@@ -152,10 +149,13 @@ const displayTask = (task, i) => {
   let taskParentNode = document.querySelector("#tasks");
   taskParentNode.appendChild(taskChildNode);
 
-  // Add event listener to drop-down menu
+  // Assign correct task status on reset
   const selectedElements = Array.from(document.querySelectorAll(".form-select"));
   const currentSelectedElement = selectedElements[i];
-  const status = currentSelectedElement.value;
+  const statuses = Array.from(currentSelectedElement.options);
+  updateStatusColour(task, currentSelectedElement, statuses);
+
+  // Add event listener to drop-down menu
   currentSelectedElement.addEventListener("change", (event) => {
     
     if(event.target.value == '1') {
@@ -166,7 +166,7 @@ const displayTask = (task, i) => {
       task.setTaskStatus("Completed");
     }
 
-    updateStatusColour(task, currentSelectedElement);
+    updateStatusColour(task, currentSelectedElement, statuses);
 
   });
 
@@ -197,7 +197,38 @@ const updatePriorityColour = (task, i) => {
 }
 
 // Update status colour
-const updateStatusColour = (task, selectMenu) => {
+const updateStatusColour = (task, selectMenu, statusOptions) => {
+
+  // reset status colour to default
+  resetStatusColour(selectMenu);
+
+  // update status colour after reset
+  if (task.getTaskStatus() == "Not Started Yet") {
+    selectMenu.classList.add("red");
+    statusOptions[0].setAttribute("selected", true);
+    resetStatusOption(statusOptions[1]);
+    resetStatusOption(statusOptions[2]);
+  } else if (task.getTaskStatus() == "In Progress") {
+    selectMenu.classList.add("yellow");
+    statusOptions[1].setAttribute("selected", true);
+    resetStatusOption(statusOptions[0]);
+    resetStatusOption(statusOptions[2]);
+  } else if (task.getTaskStatus() == "Completed") {
+    selectMenu.classList.add("green");
+    statusOptions[2].setAttribute("selected", true);
+    resetStatusOption(statusOptions[0]);
+    resetStatusOption(statusOptions[1]);
+  } else {
+    selectMenu.classList.add("red");
+    statusOptions[0].setAttribute("selected", true);
+    resetStatusOption(statusOptions[1]);
+    resetStatusOption(statusOptions[2]);
+  }
+
+}
+
+// Reset status colour to default
+const resetStatusColour = (selectMenu) => {
 
   // reset status colour to default
   if(selectMenu.classList.contains("red")) {
@@ -211,17 +242,16 @@ const updateStatusColour = (task, selectMenu) => {
   if(selectMenu.classList.contains("green")) {
     selectMenu.classList.remove("green");
   }
-
-  // update status colour after reset
-  if (task.getTaskStatus() == "Not Started Yet") {
-    selectMenu.classList.add("red");
-  } else if (task.getTaskStatus() == "In Progress") {
-    selectMenu.classList.add("yellow");
-  } else if (task.getTaskStatus() == "Completed") {
-    selectMenu.classList.add("green");
-  }
-
 }
+
+const resetStatusOption = (statusOption) => {
+
+  // reset status colour to default
+  if(statusOption.hasAttribute("selected")) {
+    statusOption.setAttribute("selected", false);
+  }
+}
+
 
 // Clear inner HTML of tasks section
 const resetTaskGrid = () => {
