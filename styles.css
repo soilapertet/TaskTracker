@@ -1,0 +1,361 @@
+/* https://coolors.co/fa8334-a20021-a0af84-040404-d7d9ce */
+
+/* Default settins */
+.default-mode {
+  --bodyBackground: #D7D9CE;
+  --headerBackground: #A20021;
+  --textFontColour: #151515;
+  --headerHeight: 100px;
+  --headerColour: #D7D9CE;
+  --formBackground: var(--headerBackground);
+  --formFontColour: #D7D9CE;
+  --overlayBackground: #151515;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bodyBackground);
+  width: 120vw;
+}
+
+#webpage-header {
+  background-color: var(--headerBackground);
+  height: var(--headerHeight);
+  display: flex;
+  flex-direction: row;
+  color: var(--headerColour);
+}
+
+#webpage-header img {
+  margin: 15px;
+}
+
+#webpage-header h1 {
+  position: absolute;
+  top: 1vh;
+  left: 100px;
+}
+
+#tasks-empty p {
+  margin-left: 36vw;
+  margin-right: 36vw;
+  margin-top: 20px;
+}
+
+#popup-form {
+  position: absolute;
+  top: 35vh;
+  left: 25vw;
+  width: 45vw;
+  
+}
+
+.center {
+  margin-left: 45vw;
+  margin-right: 45vw;
+  margin-top: 20vh;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.alternate-heading {
+  display: none;
+  visibility: hidden;
+}
+
+/************* Buttons ********************/
+/* Credits for plus button icon: https://codepen.io/LukeRFP/pen/XMbeRL by Luc Millet */
+.button_plus {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  background: #D7D9CE;
+  cursor: pointer;
+  border: 2px solid #A20021;
+  border-radius: 50%;
+  top: 80vh;
+  left: 90vw;
+}
+
+.button_plus:after {
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%);
+  height: 4px;
+  width: 50%;
+  background: #A20021;
+  top: 50%;
+  left: 50%;
+}
+
+.button_plus:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #A20021;
+  height: 50%;
+  width: 4px;
+}
+
+.button_plus:hover:before,
+.button_plus:hover:after {
+  background: #D7D9CE;
+  transition: 0.2s;
+}
+
+.button_plus:hover {
+  background-color: #A20021;
+  transition: 0.2s;
+}
+
+/* Credits for Add button: https://getcssscan.com/css-buttons-examples */
+.button-30 {
+  align-items: center;
+  appearance: none;
+  background-color: #D7D9CE;
+  border-radius: 100px;
+  border-width: 0;
+  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+  box-sizing: border-box;
+  color: #36395A;
+  width: 20%;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 48px;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: 16px;
+  padding-right: 16px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+}
+
+.button-30:focus {
+  box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+.button-30:hover {
+  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+  transform: translateY(-2px);
+}
+
+.button-30:active {
+  box-shadow: #D6D6E7 0 3px 7px inset;
+  transform: translateY(2px);
+}
+
+.form-heading button {
+  position: absolute;
+  top: 3vh;
+  left: 35vw;
+}
+
+#add-task {
+  background-color: #D6D6E7;
+}
+
+/***************** Popup Form *******************/
+#popup-form {
+  position: fixed;
+  top: 5vw; left: 35vw;
+  z-index: 110;
+  height: auto;
+  transform: scale(0); /* Scale down the pop-up form */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+}
+
+#supervisor, #club-member{
+  width: 50%;
+  position:relative;
+  left: 10%;
+}
+
+#priority-choices {
+  display: flex;
+  flex-direction: row;
+}
+
+.priority {
+  flex-grow: 1;
+}
+
+.input-form {
+  background-color: #A41623;
+  color: var(--formFontColour);
+  font-size: 18px;
+  border-radius: 25px;
+  padding: 10px;
+  width: 40vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#popup-form.show {
+  transform: scale(1); 
+  transition: transform 0.5s; 
+}
+
+
+#popup-form.hide {
+  transform: scale(0);
+  transition: transform 0.5s;
+}
+
+#tasks-empty.hide {
+  display: none;
+  visibility: hidden;
+}
+/**************** Task *****************/
+#tasks {
+  display: grid;
+}
+
+.task {
+  position: relative;
+  left: 7vw;
+  width: 76vw;
+  margin: 20px;
+  border-radius: 10px;
+  background-color: #FFFCF9;
+}
+
+.row {
+  padding: 10px 0 0 10px;
+}
+
+.current-priority {
+  border-radius: 100px;
+  width: 5vw;
+  text-align: center;
+}
+
+.current-priority.low {
+  background-color: yellow;
+}
+
+.current-priority.medium {
+  background-color: orange;
+}
+
+.current-priority.high {
+  background-color: red;
+}
+
+.title {
+  font-style: italic;
+}
+
+.deadline {
+  display: flex;
+  flex-direction: row;
+}
+
+.deadline svg {
+  margin: 0 5px 0 0;
+}
+
+.deadline p {
+  font-style: italic;
+}
+
+.form-select {
+  width: 12vw;
+  border-radius: 100px;
+  margin-bottom: 5px;
+}
+
+.form-select.red {
+  background-color: red;
+}
+
+.form-select.yellow {
+  background-color: yellow;
+}
+
+.form-select.green {
+  background-color: green;
+}
+
+/**************** Overlay *****************/
+.overlay {
+  display: none; /* Hide the overlay */
+  opacity: 0.5;
+  background: var(--overlayBackground);
+  position: fixed;
+  top: 0; left: 0; /* Add overlay to the entire html  */
+  width: 100vw; height: 100vh; /* Add overlay to the entire html  */
+  z-index: 100;
+  cursor: pointer;
+  transition: opacity 2s ease;
+}
+
+
+.overlay.show {
+  display: block; /* Show the overlay */
+}
+
+/* Responsive Media */
+@media screen and (max-width: 870px) {
+  .default-heading {
+    display: none;
+    visibility: hidden;
+  }
+
+  .alternate-heading {
+    display: block;
+    visibility: visible;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  #popup-form{
+    top: 20vh;
+    left: 10vw;
+    width: 80vw;
+  }
+}
+
+@media screen and (min-width: 491px) and (max-width: 667px) {
+  #popup-form {
+    top: 20vh;
+    left: 22vw;
+    width: 55vw;
+  }
+}
+
+@media screen and (min-width: 668px) and (max-width: 980px) {
+  #popup-form {
+    top: 20vh;
+    left: 30vw;
+    width: 40vw;
+  }
+}

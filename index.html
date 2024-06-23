@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UCalgary Blockchain Society - Task Tracker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
+  <script src="index.js" defer></script>
+</head>
+<body class="default-mode">
+  <div class="container-fluid">
+    <header>
+      <div id="webpage-header">
+        <!-- Credits for icon: https://www.iconpacks.net/?utm_source=link-attribution&utm_content=9998 -->
+       <img src="img/blockchain-icon.png" alt="Image of a blockchain logo" class="logo">
+       <div class="default-heading">
+        <h1 class="container-fluid">UCalgary Blockchain Society - Task Tracker</h1>
+       </div>
+       <div class="alternate-heading">
+        <h1 class="container-fluid">Task Tracker</h1>
+       </div>
+      </div>
+    </header>
+    <main id="webpage-main">
+      <section id="tasks-empty">
+        <!-- Credits for icon: https://www.iconpacks.net/?utm_source=link-attribution&utm_content=9998 -->
+       <img src="img/timeline-goals-and-tasks.png" alt="Image of task timeline" class="center">
+       <p><em>Tasks assigned to team members show up here</em></p>
+      </section> 
+      <section id="tasks"></section>
+      <!-- Pop-up from (start) -->
+      <section id="popup-form">
+        <form class="input-form">
+          <div class="form-heading">
+            <h1 style="text-align:center; color:#D7D9CE;">New Task</h1>
+            <button type="button" class="btn-close btn-close-white" aria-label="Close"></button>
+          </div>
+          <div class="form-group row">
+            <label for="supervisor" class="col-sm-2 col-form-label">Supervisor</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="supervisor" placeholder="Assigned by...">
+            </div>
+          </div>
+          <br>
+          <div class="form-group row">
+            <label for="club-member" class="col-sm-2 col-form-label">Member</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="club-member" placeholder="Assigned to...">
+            </div>
+          </div>
+          <br>
+          <div class="radio-buttons">
+            <label for="priority">Priority</label>
+            <section id="priority-choices">
+              <div class="priority">
+                <input type="radio" name="priority" id="low-priority" value="Low">
+                <label for="low-priority">Low</label>
+              </div>
+              <div class="priority">
+                <input type="radio" name="priority" id="medium-priority" value="Medium">
+                <label for="medium-priority">Medium</label>
+              </div>
+              <div class="priority">
+              <input type="radio" name="priority" id="high-priority" value="High">
+                <label for="high-priority">High</label>
+              </div>
+            </section>
+            <br>
+          </div>
+          <div class="form-group">
+            <label for="task-deadline" class="col-sm-2 col-form-label">Deadline</label>
+            <input type="date" id="task-deadline">
+          </div>
+          <br>
+          <div class="form-group">
+            <textarea class="form-control" id="task-description" rows="3" placeholder="Enter task description..."></textarea>
+          </div>
+          <br>
+          <button type="submit" class="button-30" id="add-task" role="button">Add</button>
+        </form>
+      </section>
+      <div class="overlay"></div>
+      <!-- Pop-up form (end) -->
+      <div role="button" class="button_plus"></div>
+    </main>
+  </div>
+</body>
+</html>
