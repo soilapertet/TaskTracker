@@ -293,15 +293,15 @@ body {
   margin-bottom: 5px;
 }
 
-.form-select.red, .current-priority.red {
+.form-select.red {
   background-color: red;
 }
 
-.form-select.yellow, .current-priority.yellow{
+.form-select.yellow {
   background-color: yellow;
 }
 
-.form-select.green, .current-priority.green {
+.form-select.green {
   background-color: green;
 }
 

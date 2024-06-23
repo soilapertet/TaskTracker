@@ -28,6 +28,7 @@ class Task {
     this.taskPriority = taskPriority;
     this.taskDeadline = taskDeadline;
     this.assignedTask = assignedTask;
+    this.taskStatus = "Not Started Yet";
   }
 
   // initialise the getter methods
@@ -36,6 +37,7 @@ class Task {
   getTaskPriority() { return this.taskPriority };
   getTaskDeadline() { return this.taskDeadline };
   getAssignedTask() { return this.assignedTask };
+  getTaskStatus() { return this.taskStatus};
 
   // initialise the setter methods
   // method to set the status of the current task
@@ -153,6 +155,23 @@ const updatePriorityColour = (task, i) => {
   } else if(task.getTaskPriority() == "High"){
     priorityParagraph.classList.add("high");
   }
+
+}
+
+// Update status colour
+const updateStatusColour = (task, i) => {
+
+  let statusDropDownMenus = Array.from(document.querySelectorAll(".form-select"));
+  let currentStatusMenu = statusDropDownMenus[i];
+
+  if(task.getTaskStatus() == "Not Started Yet") {
+    currentStatusMenu.classList.add("red");
+  } else if(task.getTaskStatus() == "In Progress") {
+    currentStatusMenu.classList.add("yellow");
+  } else if(task.getTaskStatus() == "Completed") {
+    currentStatusMenu.classList.add("green");
+  }
+
 }
 
 // Clear inner HTML of tasks section
@@ -170,6 +189,7 @@ const displayAssignedTasks = (tasks) => {
   for(i = 0; i < tasks.length; i++) {
     displayTask(tasks[i]);
     updatePriorityColour(tasks[i], i);
+    updateStatusColour(tasks[i], i);
   }
 }
 
