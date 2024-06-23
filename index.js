@@ -13,6 +13,14 @@ let statusDropDownMenus, currentStatusMenu;
 // Task class
 class Task {
 
+  // class properties
+  taskSupervisor;
+  clubMember;
+  taskPriority;
+  taskDeadline;
+  assignedTask;
+  taskStatus;
+
   // initialise the constructor method of the Task object
   constructor(
     taskSupervisor,
@@ -29,7 +37,6 @@ class Task {
     this.taskPriority = taskPriority;
     this.taskDeadline = taskDeadline;
     this.assignedTask = assignedTask;
-    this.taskStatus = "Not Started Yet";
   }
 
   // initialise the getter methods
@@ -101,7 +108,10 @@ const displayTask = (task, i) => {
   taskChildNode.classList.add("task");
   let taskContent = `
     <div class="row">
-      <div class="col"><h3><em>${task.getAssignedTask()}</em></h3></div>
+      <div class="col-11"><h3><em>${task.getAssignedTask()}</em></h3></div>
+      <div class="col-1">
+        <button type="button" class="btn-close" aria-label="Close" id="delete-btn"></button>
+      </div>
     </div>
     <div class="row row-cols-5">
       <div class="col title">Deadline</div>
@@ -121,8 +131,9 @@ const displayTask = (task, i) => {
         <p class="current-priority">${task.getTaskPriority()}</p>
       </div>
       <div class="col" >
-        <select class="form-select red">
-          <option selected value="1">Not Started Yet</option>
+        <select class="form-select">
+          <option selected value="0">Select Status</option>
+          <option value="1">Not Started Yet</option>
           <option value="2">In Progress</option>
           <option value="3">Completed</option>
         </select>
@@ -158,6 +169,14 @@ const displayTask = (task, i) => {
     updateStatusColour(task, currentSelectedElement);
 
   });
+
+  // Add event listner to delete button
+  const deleteButtons = Array.from(document.querySelectorAll("#delete-btn"));
+  const deleteButton = deleteButtons[i];
+  deleteButton.addEventListener("click", () => {
+    taskList.splice(i, 1);
+    displayAssignedTasks(taskList);
+  })
 
 }
 
@@ -219,9 +238,7 @@ const displayAssignedTasks = (tasks) => {
   for(i = 0; i < tasks.length; i++) {
     displayTask(tasks[i], i);
     updatePriorityColour(tasks[i], i);
-    // updateStatusColour(tasks[i], i);
   }
-
 
 }
 
