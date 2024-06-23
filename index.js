@@ -114,7 +114,7 @@ const displayTask = (task) => {
         </svg>
         <p class="deadline">${task.getTaskDeadline()}</p>
       </div>
-      <div class="col">
+      <div class="col task-priority">
         <p class="current-priority">${task.getTaskPriority()}</p>
       </div>
       <div class="col" >
@@ -140,6 +140,21 @@ const displayTask = (task) => {
   taskParentNode.appendChild(taskChildNode);
 }
 
+// Update priority colour
+const updatePriorityColour = (task, i) => {
+
+  let priorityParagraphs = Array.from(document.querySelectorAll(".task-priority p"));
+  let priorityParagraph = priorityParagraphs[i];
+
+  if(task.getTaskPriority() == "Low") {
+    priorityParagraph.classList.add("low");
+  } else if(task.getTaskPriority() == "Medium") {
+    priorityParagraph.classList.add("medium");
+  } else if(task.getTaskPriority() == "High"){
+    priorityParagraph.classList.add("high");
+  }
+}
+
 // Clear inner HTML of tasks section
 const resetTaskGrid = () => {
   tasksSection.innerHTML = "";
@@ -152,9 +167,10 @@ const displayAssignedTasks = (tasks) => {
   resetTaskGrid();         // clear all tasks that are currently displayed
 
   // display tasks that are currently in tasks array
-  tasks.forEach((task) => {
-    displayTask(task);
-  });
+  for(i = 0; i < tasks.length; i++) {
+    displayTask(tasks[i]);
+    updatePriorityColour(tasks[i], i);
+  }
 }
 
 // Functionality to open pop-up form
