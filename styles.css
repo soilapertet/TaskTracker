@@ -230,6 +230,70 @@ body {
   transition: transform 0.5s;
 }
 
+#tasks-empty.hide {
+  display: none;
+  visibility: hidden;
+}
+/**************** Task *****************/
+#tasks {
+  display: grid;
+}
+
+.task {
+  position: relative;
+  left: 7vw;
+  width: 85vw;
+  margin: 20px;
+  border-radius: 10px;
+  background-color: #FFFCF9;
+}
+
+.row {
+  padding: 10px 0 0 10px;
+}
+
+.current-priority {
+  border-radius: 100px;
+  width: 5vw;
+  background-color: red;
+  text-align: center;
+}
+
+.title {
+  font-style: italic;
+}
+
+.deadline {
+  display: flex;
+  flex-direction: row;
+}
+
+.deadline svg {
+  margin: 0 5px 0 0;
+}
+
+.deadline p {
+  font-style: italic;
+}
+
+.form-select {
+  width: 12vw;
+  border-radius: 100px;
+  margin-bottom: 5px;
+}
+
+.form-select.red, .current-priority.red {
+  background-color: red;
+}
+
+.form-select.yellow, .current-priority.yellow{
+  background-color: yellow;
+}
+
+.form-select.green, .current-priority.green {
+  background-color: green;
+}
+
 /**************** Overlay *****************/
 .overlay {
   display: none; /* Hide the overlay */
